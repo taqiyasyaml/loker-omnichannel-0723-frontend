@@ -2,9 +2,9 @@ import { lazy, Suspense } from "react"
 import { Box, CircularProgress } from "@mui/material"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import IndexLayout from "./pages/index_layout"
-import Soal3 from "./pages/soal3"
 
 const Soal1 = lazy(() => import("./pages/soal1"))
+const Soal3 = lazy(() => import("./pages/soal3"))
 
 const SuspenseFallBack = () => {
     return (<>
@@ -28,13 +28,15 @@ const Router = () => {
                 },
                 {
                     path: 'soal12',
-                    element: (<Suspense>
+                    element: (<Suspense fallback={<SuspenseFallBack />}>
                         <Soal1 />
                     </Suspense>)
                 },
                 {
                     path: 'soal3',
-                    element: (<Soal3 />)
+                    element: (<Suspense fallback={<SuspenseFallBack />}>
+                        <Soal3 />
+                    </Suspense>)
                 }
             ]
         }
